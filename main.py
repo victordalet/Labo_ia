@@ -45,12 +45,13 @@ class Facedetector:
             _, self.frame = self.cap.read()
             self.face_width_in_frame = self.face_data(self.frame)
             if self.face_width_in_frame != 0:
-                #self.distance_finder()
-                self.drone.follow()
+                self.distance_finder()
+                #self.drone.follow()
                 cv2.putText(
                     self.frame, f"Distance = {round(self.distance, 2)} CM", (50, 50), self.fonts, 1, (self.WHITE), 2
                 )
             else:
+                print("")
                 #self.drone.rotate()
 
             cv2.imshow("frame", self.frame)
