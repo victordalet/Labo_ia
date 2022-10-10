@@ -27,13 +27,13 @@ class Detection:
             og_labels = pickle.load(f)
             self.labels = {v:k for k,v in og_labels.items()}
 
-    def predict(self):
+    def prediction(self):
         id_, conf = self.recognizer.predict(self.roi_gray)
-        if conf>=4 and conf <= 85:
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            name = self.labels[id_]
-            stroke = 2
-            cv2.putText(self.frame, name, (self.x,self.y), font, 1, self.color, stroke, cv2.LINE_AA)
+        print(conf)
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        name = self.labels[id_]
+        stroke = 2
+        cv2.putText(self.frame, name, (self.x,self.y), font, 1, self.color, stroke, cv2.LINE_AA)
 
     def drawRect(self):
         stroke = 2
@@ -53,7 +53,7 @@ class Detection:
                 img_item = "assets/img/victor/1.png"
                 cv2.imwrite(img_item, self.roi_color)
 
-                self.predict()
+                self.prediction()
                 self.drawRect()
 
 
