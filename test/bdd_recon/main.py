@@ -9,8 +9,15 @@ class Face:
     def __init__(self):
         self.video_capture = cv2.VideoCapture(0)
         self.color = (0, 0, 0)
-        self.known_face_encodings = Data("img.json").get_data()
-        self.known_face_names = Data("name.json").get_data()
+        self.color_txt = (255,255,255)
+        self.known_face_names = data.Data("data/name.json").get_data()
+        self.abscent_face_names = data.Data("data/name.json").get_data()
+        self.known_face_encodings = []
+        print("Training...")
+        for i in self.known_face_names:
+            self.known_face_encodings.append(self.load('student/'+i+'.jpg'))
+        print("Successful completion of training.")
+        print("Launch...")
         self.face_locations = []
         self.face_encodings = []
         self.face_names = []
@@ -18,32 +25,33 @@ class Face:
         self.run()
         self.video_capture.release()
         cv2.destroyAllWindows()
+        print("Bye")
+
 
     def load(self,url):
         image = face_recognition.load_image_file(url)
-        name = ""
-        url = url.replace('student/','')
-        for i in url:
-            if i == ".":
-                break
-            name += i
-        return face_recognition.face_encodings(image)[0] , name
+        return face_recognition.face_encodings(image)[0]
 
 
     def test(self): 
         face_names = []
         for face_encoding in self.face_encodings:
             matches = face_recognition.compare_faces(self.known_face_encodings, face_encoding)
-            name = "Unknown"
+            self.name = "Unknown"
             face_distances = face_recognition.face_distance(self.known_face_encodings, face_encoding)
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
-                name = self.known_face_names[best_match_index]
-            self.face_names.append(name) 
+                self.name = self.known_face_names[best_match_index]
+                print(self.known_face_names[best_match_index])
+                try : 
+                    self.abscent_face_names.remove(self.name) 
+                except : pass
+            self.face_names.append(self.name)
+            
 
 
     def draw(self):
-        for (top, right, bottom, left), name in zip(self.face_locations, self.face_names):
+        for (top, right, bottom, left), self.name in zip(self.face_locations, self.face_names):
             # Scale back up face locations since the frame we detected in was scaled to 1/4 size
             top *= 4
             right *= 4
@@ -51,9 +59,9 @@ class Face:
             left *= 4
 
             cv2.rectangle(self.frame, (left, top), (right, bottom), self.color, 2)
-            cv2.rectangle(self.frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+            cv2.rectangle(self.frame, (left, bottom - 35), (right, bottom), self.color, cv2.FILLED)
             font = cv2.FONT_HERSHEY_DUPLEX
-            cv2.putText(self.frame, name, (left + 6, bottom - 6), font, 1.0, self.color, 1) 
+            cv2.putText(self.frame, self.name, (left + 6, bottom - 6), font, 1.0, self.color_txt, 1) 
 
     def run(self):
         while 42:
@@ -68,9 +76,10 @@ class Face:
 
                 self.test()
 
+
             self.process_this_frame = not self.process_this_frame
             self.draw()
-            cv2.imshow('Video', frame)
+            cv2.imshow('Video', self.frame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -78,11 +87,14 @@ class Face:
 
 
 
+
+
 def main():
-    data_img = Data("img.json")
-    data_name = Data("name.json")
-    data_img.give_data(Face().load("student/macron.jpg")[0])
+    """data_img = data.Data("data/img.json")
+    data_name = data.Data("data/name.json")
     data_name.give_data(Face().load("student/macron.jpg")[1])
-    Face().run()
+    np.savetxt('student/'+Face().load("student/macron.jpg")[1] + '.txt',Face().load("student/macron.jpg")[0])"""
+    
+    Face()
 
 main()

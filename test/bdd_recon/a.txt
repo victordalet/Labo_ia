@@ -1,0 +1,21 @@
+//titre de cv -> post rechercher (dev web)
+//Profile -> manque de ponctuation (text long)
+//rajout github profile
+//connaissance par compétence technique
+//qualification par soft skill -> (leader ; gestion du stress ...)
+//formation -> esgi 2022 - 2025 bachelor
+//autoformation pour js
+//experience et projets pro
+//savoir etre -> centre intéret -> informatique ; escalade ; piano
+//niveau de langue -> fancais langue maternel ; anglais -> ..
+photo 
+
+
+linkedin
+	2tudient à l'sgi a la recherche d'un stage
+	cadre -> open to work
+	min 500 relations
+
+site d'emplois (indeed  ; welcome to the jungle ; linkedin offre d'emplois ; google jobs)
+	offre emplois linkedin
+	demande echange vocal...

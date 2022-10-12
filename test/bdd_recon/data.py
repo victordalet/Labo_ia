@@ -12,6 +12,7 @@ class Data:
         return data
 
     def give_data(self,data):
+        data2 = self.get_data()
+        data2.append(data)
         with open(self.src , "w") as fp:
-            json.dump(data,fp)
-
+            json.dump(data2,fp)

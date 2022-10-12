@@ -1,0 +1,11 @@
+site
+connexion
+ip
+app -> lancement à l'heure ; par salle 
+interface web
+relation bdd -> salle - classe - eleve 
+envoie signal ip pour connecter l'app
+modif donnée
+programme tjrs lancé
+si admin tout voir sur web
+(web scrapping)
