@@ -1,0 +1,5 @@
+UAV -> drone
+SLAM -> localisation
+Liens
+	https://www.innowtech.com/2019/05/16/les-algorithmes-slam/
+	https://www.ryzerobotics.com/fr/tello

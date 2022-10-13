@@ -13,7 +13,7 @@ class Facedetector:
         self.KNOWN_DISTANCE = 20  # centimeter
         self.KNOWN_WIDTH = 18  # centimeter
         self.fonts = cv2.FONT_HERSHEY_COMPLEX
-        #self.drone = Drone()
+        self.drone = Drone()
         self.run()
 
     def focal_length(self):
@@ -46,13 +46,13 @@ class Facedetector:
             self.face_width_in_frame = self.face_data(self.frame)
             if self.face_width_in_frame != 0:
                 self.distance_finder()
-                #self.drone.follow()
+                self.drone.follow()
                 cv2.putText(
                     self.frame, f"Distance = {round(self.distance, 2)} CM", (50, 50), self.fonts, 1, (self.WHITE), 2
                 )
             else:
                 print("")
-                #self.drone.rotate()
+                self.drone.rotate()
 
             cv2.imshow("frame", self.frame)
             if cv2.waitKey(1)==ord("q"):

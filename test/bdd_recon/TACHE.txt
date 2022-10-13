@@ -9,3 +9,30 @@ modif donnée
 programme tjrs lancé
 si admin tout voir sur web
 (web scrapping)
+
+
+
+
+
+
+
+index.php -> prés + connexion              |                                                                                              |
+redirection.php -> connexion en cours      |                                                                                              |
+home.php -> stats + ip                     | -> 5j                                                                                        |
+class.php -> classe + rajout + modif       |                                                                                              |
+presence.php -> fiche de présence          |                                                                                              |
+                                                                                                                                          |
+bdd -> client : statut (connecter ou pas) ; plan établissement ; salle (numéro de la classe [clé étrangère -> élèves] ou vide) | -> 2j    | 
+                                                                                                                                          | ->  20j 
+face detection -> faire l'appelle [algo;connexion à la bdd]                             |                                                 |
+construction du plan -> stoquer dans une bdd                                            |                                                 |
+localisation -> trouver la salle [connexion à la bdd (salle); se souvenir du plan]      | -> 12j                                          |
+esquiver                                                                                |                                                 |
+recharge autonome [batterie ; poser sur le socle ; revenir à la bonne heure (bdd)]      |                                                 |
+interface -> pygame : état  ; bouton allumée caméra si allumé ; lancement au démarage   |                                                 |
+
+
+
+FIGMA
+MODELISATION BDD
+IA
