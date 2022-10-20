@@ -33,6 +33,16 @@ interface -> pygame : état  ; bouton allumée caméra si allumé ; lancement au
 
 
 
-FIGMA
-MODELISATION BDD
-IA
+1)  
+    fonction redirection utlisant cookies
+    fonction header
+2)
+    enregistrement ou connexion dans base de donnée et envoie cookie
+3)
+    envoie ip ou code au drone pour se connecter
+4)
+    function de list
+5)
+    function get_data / rouge ou vert
+
+
