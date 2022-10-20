@@ -1,6 +1,6 @@
 # *********************************************************************** #
 #                                                                         #
-# OBJECTIVE : TACKING uav                 #####      ###    ###    #      #
+# OBJECTIVE : TRACKING uav                #####      ###    ###    #      #
 # AUTHOR :  VICTOR DALET                  #         #      #       #      #
 # CREATED : 15 09 2022                    ####      #      #  ##   #      #
 # UPDATE  : 20 10 2022                    #         #      #   #   #      #
@@ -8,7 +8,7 @@
 # *********************************************************************** #
 
 import cv2
-import tello
+from djitellopy import Tello
 
 class Facedetector:
     def __init__(self):
@@ -43,19 +43,19 @@ class Facedetector:
     def run(self):
 
         self.initialization()
-
-        self.cap = self.drone.drone.get_frame_read()
         while True:
-            _, self.frame = self.cap.read()
+            self.frame = self.drone.drone.get_frame_read().frame
             self.face_width_in_frame = self.face_data(self.frame)
             if self.face_width_in_frame != 0:
                 self.distance_finder()
-                self.drone.follow()
+                print("FIND")
+                self.drone.follow(self.distance)
                 cv2.putText(self.frame, f"Distance = {round(self.distance, 2)} CM", (50, 50), self.fonts, 1, (self.WHITE), 2)
             else:
                 self.drone.rotate()
 
             cv2.imshow("UAV", self.frame)
+            cv2.waitKey(1)
             if cv2.waitKey(1)==ord("q"):
                 break
         self.cap.release()
@@ -65,18 +65,25 @@ class Facedetector:
 class Drone:
     def __init__(self):
         self.distance_max = 60
-        self.speed = 1
-        self.drone = tello.Tello()
+        self.speed = 10
+        self.drone = Tello()
+        self.drone.connect()
+        self.drone.streamon()
+        print(self.drone.get_battery())
         self.drone.takeoff() #décolage
         #self.drone.land() #attérissage
 
-    def follow(self):
-        if self.distance > self.distance_max:
-            self.drone.forward(self.speed)
-        elif self.distance < self.distance_max:
-            self.drone.backward(self.speed)
+    def follow(self,distance):
+        if distance > self.distance_max:
+            self.drone.move_forward(self.speed)
+        elif distance < self.distance_max:
+            self.drone.move_back(self.speed)
     
     def rotate(self):
-            self.drone.rotate("r",self.speed)
+            self.drone.rotate_counter_clockwise(90)
+
+    def capture(self):
+        return self.drone.get_frame_read().frame
+
 
 Facedetector()
