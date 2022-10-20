@@ -60,7 +60,7 @@ class Facedetector:
                 break
         self.cap.release()
         cv2.destroyAllWindows()
-
+        self.drone.drone.land()
 
 class Drone:
     def __init__(self):
