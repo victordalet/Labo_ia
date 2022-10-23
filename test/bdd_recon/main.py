@@ -46,6 +46,7 @@ class Face:
                 try : 
                     self.abscent_face_names.remove(self.name) 
                 except : pass
+            else : print("Unknown")
             self.face_names.append(self.name)
             
 

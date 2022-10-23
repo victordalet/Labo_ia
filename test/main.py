@@ -1,6 +1,6 @@
 # *********************************************************************** #
 #                                                                         #
-# OBJECTIVE : TRACKING uav                #####      ###    ###    #      #
+# OBJECTIVE : TRACKING UAV                ####       ###    ###    #      #
 # AUTHOR :  VICTOR DALET                  #         #      #       #      #
 # CREATED : 15 09 2022                    ####      #      #  ##   #      #
 # UPDATE  : 20 10 2022                    #         #      #   #   #      #
@@ -81,9 +81,6 @@ class Drone:
     
     def rotate(self):
             self.drone.rotate_counter_clockwise(90)
-
-    def capture(self):
-        return self.drone.get_frame_read().frame
 
 
 Facedetector()
