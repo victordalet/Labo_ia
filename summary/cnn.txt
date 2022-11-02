@@ -1,0 +1,66 @@
+								SOURCE 
+Convolutional Neural Networks for embedded vision -> Lucas Fernandez Brillet
+
+_______________________________________________________________________________
+
+1 - Aperçu de l'apprentissage profond
+	
+
+	L'élément de base d'un réseau neuronal est le neurone. 
+	Les réseaux neuronaux sont généralement organisés en couches. 
+	Ces couches sont constituées d'un certain nombre de nœuds interconnectés (qui représentent les neurones).
+	Chaque neuronne prend en entrée n X avec n W correspondant au poid du neuronne et resort la somme de Wi.Xi.
+	La sortie passe ensuite par une fonction d'activation.
+	Au début, les poids sont initialisés de manière aléatoire.
+	Le réseau ajuste alors ses poids de connexion jusqu'à ce que la fonction coût soit minimisé grâce à certains algorythmes tel que la déscente de gradients.
+
+
+2 - CNN
+
+	Les CNN permettent de faire correspondre un filtre à une image.
+	Ces filtres sont appris en fonction de la tâche pour laquelle ils ont été formés.
+	La sortie des CNN est appelée matrice de caractéristiques.
+	Les entrées des CNN sont la valeur des pixels de l'images.
+
+
+	convolution -> mutliplication des pixel de l'image par un kernel -> somme pondéré
+
+				-> multiplication de hadamard ->
+                                                    5  2  1     1  0  1
+                                                    4  3  2     0  1  0  -> 10
+                                                    0  2  1     1  0  1
+                                                       x           w         y
+
+                -> parametres a prendre en compte 
+                								  -> padding (même taille de l'iamge)
+                								  -> strides (pas de déplacement de la fenêtre de convolution)
+
+
+
+
+	Probabilité que la classe i soit bonne ->
+
+											                  exp(Z )
+											                       i
+												p  =     _______________
+												 i        somme(exp(Z ))
+												                     k
+
+    fonction coût -> 
+    											  1
+    										L = - -  somme(Y  .log(P  )+(1-Y  ).log(1-P  ))
+    										      n         i2      i2      i2         i2
+
+   	Descente de gradient ->
+                                                                                         dérivé(L)
+   											W   = W   + delta(W  ),où delta(w  ) = - eta(__________)
+   											 ij    ij          ij            ij          dérivé(W  )
+   											                                                     ij 
+
+                                         	où ->
+                                         			i,j est les poids mis à jours
+                                         			n   est le taux d'apprentisage
+                                         			L   est la fonction coût
+
+
+	

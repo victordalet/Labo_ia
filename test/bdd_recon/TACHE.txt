@@ -14,11 +14,9 @@ si admin tout voir sur web
 
 
 
-
-
-index.php -> prés + connexion              |                                                                                              |
-redirection.php -> connexion en cours      |                                                                                              |
-home.php -> stats + ip                     | -> 5j                                                                                        |
+.index.php -> prés + connexion              |                                                                                              |
+.redirection.php -> connexion en cours      |                                                                                              |
+.home.php -> stats + ip                     | -> 5j                                                                                        |
 class.php -> classe + rajout + modif       |                                                                                              |
 presence.php -> fiche de présence          |                                                                                              |
                                                                                                                                           |
